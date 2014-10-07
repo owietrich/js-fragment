@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document fragments</title>
+</head>
+<body>
+	<h1>Add 10000 items</h1>
+	<button class="without">without fragment</button>
+	<button class="with">with fragment</button>
+	<ul class="list"></ul>
+	<script>
+	  var list = document.querySelector('.list');
+
+	  document.querySelector('.without').addEventListener('click', function() {
+	  	clear();
+	  	timer(function() {
+	  		for(var l = 10000; l--;) {
+	  			var li = document.createElement('li');
+	  			list.appendChild(li);
+	  			li.innerHTML = 'foo';
+	  		}
+	  	}, 'without fragment');
+	  });
+
+	  document.querySelector('.with').addEventListener('click', function() {
+	  	clear();
+	  	timer(function() {
+	  		var fragment = document.createDocumentFragment();
+	  		for(var l = 10000; l--;) {
+	  			var li = document.createElement('li');
+	  			fragment.appendChild(li);
+	  			li.innerHTML = 'foo';	  			
+	  		}
+	  		list.appendChild(fragment);
+	  	}, 'with fragment');
+	  });
+
+	  function clear() {
+	  	list.innerHTML = '';
+	  }
+
+	  function timer(fn, str) {
+	  	var start = new Date();
+	  	fn();
+	  	console.log(str, new Date() - start);
+	  }
+	</script>
+</body>
+</html>
