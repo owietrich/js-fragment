@@ -3,6 +3,12 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document fragments</title>
+	<style>
+	  .red {
+	  	height:30px;
+	  	background:red;
+	  }
+	</style>
 </head>
 <body>
 	<h1>Add 10000 items</h1>
@@ -15,24 +21,26 @@
 	  document.querySelector('.without').addEventListener('click', function() {
 	  	clear();
 	  	timer(function() {
-	  		for(var l = 10000; l--;) {
-	  			var li = document.createElement('li');
-	  			list.appendChild(li);
-	  			li.innerHTML = 'foo';
-	  		}
+		  	for(var l = 10000; l--;) {
+		  		var li = document.createElement('li');
+		  		list.appendChild(li);
+		  		li.setAttribute('class', 'red');
+		  		li.innerHTML = 'foo';
+		  	}
 	  	}, 'without fragment');
 	  });
 
 	  document.querySelector('.with').addEventListener('click', function() {
 	  	clear();
+	  	var fragment = document.createDocumentFragment();
 	  	timer(function() {
-	  		var fragment = document.createDocumentFragment();
-	  		for(var l = 10000; l--;) {
-	  			var li = document.createElement('li');
-	  			fragment.appendChild(li);
-	  			li.innerHTML = 'foo';	  			
-	  		}
-	  		list.appendChild(fragment);
+		  	for(var l = 10000; l--;) {
+		  		var li = document.createElement('li');
+		  	  fragment.appendChild(li);
+		  		li.setAttribute('class', 'red');
+		  		li.innerHTML = 'foo';
+		  	}
+		  	list.appendChild(fragment);
 	  	}, 'with fragment');
 	  });
 
