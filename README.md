@@ -39,6 +39,28 @@ It is customary to say that dom is expensive but I would argue with people sayin
 
 If you have any questions or comments, please feel free to post an [issue](https://github.com/owietrich/js-fragment/issues).
 
+## Examples
+
+Here's some of my projects using document fragments:
+
+### stack
+
+A stack ([bredele/domstack](http://github.com/bredele/domstack)) is a module that allow to create a pile of elements inside a fragment and show one element at a time in the document:
+
+```js
+var stack = new Stack(rootEl);
+stack.add('beep', beepEl);
+stack.add('foo', fooEl);
+
+// show beep element
+stack.show('beep');
+
+// hide beep element and show foo element
+stack.show('foo');
+```
+
+It is really useful to create tab-based navigation, search filters, wizards, caroussels, etc.
+
 ## License
 
 The MIT License (MIT)
